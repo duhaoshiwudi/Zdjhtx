@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.UI", "com.Zdjhtx\Zdjhtx.UI.csproj", "{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.BLL", "Zdjhtx.BLL\Zdjhtx.BLL.csproj", "{6DE541E2-E315-4962-A90B-48631408BA56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.DAL", "Zdjhtx.DAL\Zdjhtx.DAL.csproj", "{6801934A-EA45-4C99-8F33-2D0FCF32B95E}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.Model", "Zdjhtx.Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.Utility", "Zdjhtx.Utility\Zdjhtx.Utility.csproj", "{092F322E-8632-4413-8EF8-2B8C0C7D3A2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdjhtx.UI", "Zdjhtx.UI\Zdjhtx.UI.csproj", "{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DE541E2-E315-4962-A90B-48631408BA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DE541E2-E315-4962-A90B-48631408BA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE541E2-E315-4962-A90B-48631408BA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{092F322E-8632-4413-8EF8-2B8C0C7D3A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{092F322E-8632-4413-8EF8-2B8C0C7D3A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{092F322E-8632-4413-8EF8-2B8C0C7D3A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AEF50D-3E05-4275-AB3F-ED5300F0FB54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
