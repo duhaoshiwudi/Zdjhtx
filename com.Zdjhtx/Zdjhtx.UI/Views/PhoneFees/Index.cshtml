@@ -94,7 +94,7 @@
         $(document).ready(function () {
             projectInput.bind('input propertychange', function () {
                 $(".am-active").each(function (idx, obj) {
-                    $(obj).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                    $(obj).addClass('am-btn-default').removeClass('am-btn-secondary').removeClass('am-active')
                 });
 
                 if ($(this).val().length == 11) {
@@ -141,14 +141,14 @@
 
             $('.am-btn-default').on("click", function (event) {
                 $(".am-active").each(function (idx, obj) {
-                    $(obj).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                    $(obj).addClass('am-btn-default').removeClass('am-btn-secondary').removeClass('am-active')
                 });
 
                 if ($(this).hasClass('am-btn-default')) {
-                    $(this).removeClass('am-btn-default').addClass('am-btn-primary').addClass('am-active')
+                    $(this).removeClass('am-btn-default').addClass('am-btn-secondary').addClass('am-active')
                 }
                 else {
-                    $(this).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                    $(this).addClass('am-btn-default').removeClass('am-btn-secondary').removeClass('am-active')
                 }
             });
         })
