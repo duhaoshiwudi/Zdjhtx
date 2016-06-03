@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>众德嘉华通讯</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+    </style>
+</head>
+<body class="am-with-fixed-navbar">
+    <!--[if lte IE 9]>
+    <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+      href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+      以获得更好的体验！</p>
+    <![endif]-->
+    <header data-am-widget="header" class="am-header am-header-default am-no-layout">
+
+        <h1 class="am-header-title">
+            北京移动9.8折
+        </h1>
+
+    </header>
+    <div class="am-input-group am-input-group-primary" style="margin-top:1.5rem">
+        <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+        <input type="number" id="vldNumber" oninput="if(value.length>11)value=value.slice(0,11)" style="height:5rem" placeholder="请输入手机号" class="am-form-field" required />
+    </div>
+    <div class="am-input-group-primary" style="margin-left: 1rem; margin-top: 1rem">
+        <span style="font-size: 1.3rem">充话费</span>
+    </div>
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2  am-avg-md-3 am-avg-lg-4 am-gallery-default am-no-layout" data-am-gallery="{ pureview: true }">
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="29.4">30元<span style="font-size:1.3rem"><br>售价29.4元</span></button>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="49">50元<span style="font-size: 1.3rem; "><br>售价49元</span></button>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="98">100元<span style="font-size: 1.3rem; "><br>售价98元</span></button>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="196">200元<span style="font-size: 1.3rem; "><br>售价196元</span></button>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="490">500元<span style="font-size: 1.3rem; "><br>售价490元</span></button>
+            </div>
+        </li>
+        <li>
+            <div class="am-gallery-item" style="text-align:center">
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="980">1000元<span style="font-size: 1.3rem; "><br>售价980元</span></button>
+            </div>
+        </li>
+    </ul>
+    <div class="am-gallery-item" style="text-align:center">
+        <button style="margin-top: 1.5rem; margin-bottom:1.5rem" class="am-btn am-btn-primary am-btn-xl am-round" onclick="Pay()">确认充值</button>
+    </div>
+    <!--<footer data-am-widget="footer" class="am-footer am-footer-default  am-no-layout" data-am-footer="{  }">
+        <div class="am-footer-miscs ">
+
+            <p>CopyRight©2016  AllMobilize Inc.</p>
+            <p>京ICP备13033158</p>
+        </div>
+    </footer>-->
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout" id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4">
+            <li>
+                <a href="tel:123456789" class="">
+                    <span class="am-icon-phone"></span>
+                    <span class="am-navbar-label">客服电话</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/allmobilize/amazeui" class="">
+                    <span class="am-icon-search"></span>
+                    <span class="am-navbar-label">历史订单</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.js"></script>
+    <script src="assets/js/handlebars.min.js"></script>
+    <script src="assets/js/amazeui.widgets.helper.js"></script>
+    <script type="text/javascript">
+        var projectInput = $("#vldNumber");
+
+        $(document).ready(function () {
+            projectInput.bind('input propertychange', function () {
+                $(".am-active").each(function (idx, obj) {
+                    $(obj).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                });
+
+                if ($(this).val().length == 11) {
+                    if (IsPhoneNumber($(this).val())) {
+                        $(".am-btn-default").each(function (idx, obj) {
+                            $(obj).removeClass('am-disabled')
+                        });
+                    }
+                }
+                else {
+                    $(".am-btn-default").each(function (idx, obj) {
+                        $(obj).addClass('am-disabled')
+                    });
+                }
+            });
+
+
+            //projectInput.keyup(function () {
+            //    if ($(this).val().length == 11) {
+            //        if (IsPhoneNumber($(this).val())) {
+            //            $(".am-btn-default").each(function (idx, obj) {
+            //                $(obj).removeClass('am-disabled')
+            //            });
+            //        }
+            //    }
+            //    else {
+            //        $(".am-btn-default").each(function (idx, obj) {
+            //            $(obj).addClass('am-disabled')
+            //        });
+            //    }
+            //})
+
+            $('.am-btn-default').on("click", function (event) {
+                $(".am-active").each(function (idx, obj) {
+                    $(obj).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                });
+
+                if ($(this).hasClass('am-btn-default')) {
+                    $(this).removeClass('am-btn-default').addClass('am-btn-primary').addClass('am-active')
+                }
+                else {
+                    $(this).addClass('am-btn-default').removeClass('am-btn-primary').removeClass('am-active')
+                }
+            });
+        })
+
+        function getList() {
+
+        }
+
+        function Pay() {
+            alert("要充值！");
+        }
+
+        function IsPhoneNumber(value) {
+            if (/^1[34578]\d{9}$/.test(value)) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
