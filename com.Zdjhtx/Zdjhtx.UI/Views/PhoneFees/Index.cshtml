@@ -28,7 +28,7 @@
         <input type="number" id="vldNumber" oninput="if(value.length>11)value=value.slice(0,11)" style="height:5rem" placeholder="请输入手机号" class="am-form-field" required />
     </div>
     <div class="am-input-group-primary" style="margin-left: 1rem; margin-top: 1rem">
-        <span style="font-size: 1.3rem">充话费</span>
+        <span style="font-size: 1.3rem">充话费</span><span id="warnText" style="font-size: 1.3rem; color: red; float: right"></span>
     </div>
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2  am-avg-md-3 am-avg-lg-4 am-gallery-default am-no-layout" data-am-gallery="{ pureview: true }">
         <li>
@@ -113,19 +113,16 @@
                             cache: false,
                             timeout: 60 * 60 * 1000,
                             data: data,
-                            success: function (Result) {
-                                if (Result == "OK") {
+                            success: function (result) {
+                                if (result && result.Message == 'OK') {
                                     $(".am-btn-default").each(function (idx, obj) {
                                         $(obj).removeClass('am-disabled')
                                     });
                                     $("#btnOK").show();
-                                    alert("号码满足！");
+                                    alert(result.ResultType);
                                 }
                                 else {
-                                    $(".am-btn-default").each(function (idx, obj) {
-                                        $(obj).addClass('am-disabled')
-                                    });
-                                    alert("不是北京移动号码！");
+                                    $("#warnText").text(result.ResultType);
                                 }
                             }
                         });
@@ -135,6 +132,7 @@
                     $(".am-btn-default").each(function (idx, obj) {
                         $(obj).addClass('am-disabled')
                     });
+                    $("#warnText").text("");
                     $("#btnOK").hide();
                 }
             });

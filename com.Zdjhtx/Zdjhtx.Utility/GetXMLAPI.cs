@@ -13,7 +13,7 @@ namespace Zdjhtx.Utility
 {
     public static partial class GetXMLAPI
     {
-        public static PhoneNumInfo PostData(string url, string param, String tableName)
+        public static PhoneNumInfo PostData(string url, string param)
         {
             #region post数据
             DataSet ds = new DataSet(); DataTable dt = new DataTable();
