@@ -62,7 +62,7 @@
             </div>
         </li>
     </ul>
-    <div class="am-gallery-item" style="text-align:center">
+    <div id="btnOK" class="am-gallery-item" style="text-align:center; display:none">
         <button style="margin-top: 1.5rem; margin-bottom:1.5rem" class="am-btn am-btn-primary am-btn-xl am-round" onclick="Pay()">确认充值</button>
     </div>
     <!--<footer data-am-widget="footer" class="am-footer am-footer-default  am-no-layout" data-am-footer="{  }">
@@ -99,10 +99,6 @@
 
                 if ($(this).val().length == 11) {
                     if (IsPhoneNumber($(this).val())) {
-                        $(".am-btn-default").each(function (idx, obj) {
-                            $(obj).removeClass('am-disabled')
-                        });
-
                         var data = "";
                         var Phone = "";
 
@@ -119,9 +115,16 @@
                             data: data,
                             success: function (Result) {
                                 if (Result == "OK") {
+                                    $(".am-btn-default").each(function (idx, obj) {
+                                        $(obj).removeClass('am-disabled')
+                                    });
+                                    $("#btnOK").show();
                                     alert("号码满足！");
                                 }
                                 else {
+                                    $(".am-btn-default").each(function (idx, obj) {
+                                        $(obj).addClass('am-disabled')
+                                    });
                                     alert("不是北京移动号码！");
                                 }
                             }
@@ -132,6 +135,7 @@
                     $(".am-btn-default").each(function (idx, obj) {
                         $(obj).addClass('am-disabled')
                     });
+                    $("#btnOK").hide();
                 }
             });
 
@@ -150,7 +154,12 @@
         })
 
         function Pay() {
-            alert("要充值！");
+            if ($(".am-active").length == 1) {
+                alert("可以进入支付页面！");
+            }
+            else {
+                alert("请选择一个充值面额！");
+            }
         }
 
         function IsPhoneNumber(value) {
@@ -159,6 +168,6 @@
             }
             return false;
         }
-</script>
+    </script>
 </body>
 </html>
