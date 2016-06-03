@@ -102,6 +102,30 @@
                         $(".am-btn-default").each(function (idx, obj) {
                             $(obj).removeClass('am-disabled')
                         });
+
+                        var data = "";
+                        var Phone = "";
+
+                        Phone = projectInput.val();
+
+                        data = data + "Phone=" + encodeURI(Phone);
+
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "/PhoneFees/GetPhoneLocation.do",
+                            cache: false,
+                            timeout: 60 * 60 * 1000,
+                            data: data,
+                            success: function (Result) {
+                                if (Result == "OK") {
+                                    alert("号码满足！");
+                                }
+                                else {
+                                    alert("不是北京移动号码！");
+                                }
+                            }
+                        });
                     }
                 }
                 else {
@@ -110,22 +134,6 @@
                     });
                 }
             });
-
-
-            //projectInput.keyup(function () {
-            //    if ($(this).val().length == 11) {
-            //        if (IsPhoneNumber($(this).val())) {
-            //            $(".am-btn-default").each(function (idx, obj) {
-            //                $(obj).removeClass('am-disabled')
-            //            });
-            //        }
-            //    }
-            //    else {
-            //        $(".am-btn-default").each(function (idx, obj) {
-            //            $(obj).addClass('am-disabled')
-            //        });
-            //    }
-            //})
 
             $('.am-btn-default').on("click", function (event) {
                 $(".am-active").each(function (idx, obj) {
@@ -141,10 +149,6 @@
             });
         })
 
-        function getList() {
-
-        }
-
         function Pay() {
             alert("要充值！");
         }
@@ -155,6 +159,6 @@
             }
             return false;
         }
-    </script>
+</script>
 </body>
 </html>
