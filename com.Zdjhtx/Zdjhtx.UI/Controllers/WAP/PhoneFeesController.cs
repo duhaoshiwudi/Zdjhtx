@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
-using Zdjhtx.UI.Models;
+using Zdjhtx.Model;
+using Zdjhtx.Utility;
 
 namespace com.Zdjhtx.Controllers.WAP
 {
@@ -30,15 +32,15 @@ namespace com.Zdjhtx.Controllers.WAP
             System.Text.StringBuilder param = new System.Text.StringBuilder();
             param.AppendFormat("chgmobile={0}", Phone);
 
-            string url = "http://life.tenpay.com/cgi-bin/mobile/MobileQueryAttribution.cgi";
+            string url = ConfigurationManager.AppSettings["numberInfoUrl"];
 
-            DataTable dtResult = PostData(url, param.ToString(), "PhoneNumInfo");
+            PhoneNumInfo info = GetXMLAPI.PostData(url, param.ToString(), "PhoneNumInfo");
 
-            if (dtResult != null && dtResult.Rows.Count > 0)
+            if (info != null)
             {
-                if (dtResult.Rows[0]["retmsg"].ToString().Trim() == "OK")
+                if (info.retmsg.Trim() == "OK")
                 {
-                    if (dtResult.Rows[0]["city"].ToString().Trim() == "北京" && dtResult.Rows[0]["supplier"].ToString().Trim() == "移动")
+                    if (info.city.Trim() == "北京" && info.supplier.Trim() == "移动")
                     {
                         result = "OK";
                     }
@@ -50,46 +52,5 @@ namespace com.Zdjhtx.Controllers.WAP
             }
             return Content(result); ;
         }
-
-        public static DataTable PostData(string url, string param, String tableName)
-        {
-            #region post数据
-            DataSet ds = new DataSet(); DataTable dt = new DataTable();
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Timeout = 120000;
-            byte[] requestbytes = System.Text.Encoding.ASCII.GetBytes(param);
-            req.Method = "post";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.ContentLength = requestbytes.Length;
-            System.IO.Stream requeststream = req.GetRequestStream();
-            requeststream.Write(requestbytes, 0, requestbytes.Length);
-            requeststream.Close();
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            System.IO.StreamReader sr = new System.IO.StreamReader(res.GetResponseStream(), System.Text.Encoding.Default);
-
-            String backstr = sr.ReadToEnd();
-            StringReader txtReader = new StringReader(backstr);
-            XmlTextReader xmlReader = new XmlTextReader(txtReader);
-            try
-            {
-                ds.ReadXml(xmlReader);
-            }
-            catch
-            {
-                return null;
-            }
-            sr.Close();
-            res.Close();
-            sr.Dispose();
-
-            //条件判断
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                dt = ds.Tables[0].Copy();
-            }
-            return dt;
-            #endregion
-        }
-
     }
 }

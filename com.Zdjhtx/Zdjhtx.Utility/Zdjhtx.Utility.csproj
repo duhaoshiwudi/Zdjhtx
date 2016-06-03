@@ -39,13 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
     <Compile Include="GetXMLAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zdjhtx.UI\Zdjhtx.UI.csproj">
-      <Project>{48aef50d-3e05-4275-ab3f-ed5300f0fb54}</Project>
-      <Name>Zdjhtx.UI</Name>
+    <ProjectReference Include="..\Zdjhtx.Model\Zdjhtx.Model.csproj">
+      <Project>{bb48599d-d478-42d6-a904-4f046d91dcbd}</Project>
+      <Name>Zdjhtx.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

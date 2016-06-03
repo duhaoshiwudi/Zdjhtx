@@ -155,7 +155,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PhoneNumInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +226,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Zdjhtx.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zdjhtx.Model\Zdjhtx.Model.csproj">
+      <Project>{bb48599d-d478-42d6-a904-4f046d91dcbd}</Project>
+      <Name>Zdjhtx.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zdjhtx.Utility\Zdjhtx.Utility.csproj">
+      <Project>{092f322e-8632-4413-8ef8-2b8c0c7d3a2e}</Project>
+      <Name>Zdjhtx.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
