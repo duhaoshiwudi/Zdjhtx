@@ -119,6 +119,36 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\amazeuiassets\css\admin.css" />
+    <Content Include="Resources\amazeuiassets\css\amazeui.css" />
+    <Content Include="Resources\amazeuiassets\css\amazeui.flat.css" />
+    <Content Include="Resources\amazeuiassets\css\amazeui.flat.min.css" />
+    <Content Include="Resources\amazeuiassets\css\amazeui.min.css" />
+    <Content Include="Resources\amazeuiassets\css\app.css" />
+    <Content Include="Resources\amazeuiassets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Resources\amazeuiassets\i\app-icon72x72%402x.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\admin-chrome.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\admin-firefox.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\admin-ie.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\admin-opera.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\admin-safari.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\adminPage.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\blogPage.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\landing.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\landingPage.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\loginPage.png" />
+    <Content Include="Resources\amazeuiassets\i\examples\sidebarPage.png" />
+    <Content Include="Resources\amazeuiassets\i\favicon.png" />
+    <Content Include="Resources\amazeuiassets\i\startup-640x1096.png" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.ie8polyfill.js" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.ie8polyfill.min.js" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.js" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.min.js" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.widgets.helper.js" />
+    <Content Include="Resources\amazeuiassets\js\amazeui.widgets.helper.min.js" />
+    <Content Include="Resources\amazeuiassets\js\app.js" />
+    <Content Include="Resources\amazeuiassets\js\handlebars.min.js" />
+    <Content Include="Resources\amazeuiassets\js\jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -132,13 +162,22 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\PC\" />
     <Folder Include="Models\" />
-    <Folder Include="Resources\amazeuiassets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PhoneFees\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\amazeuiassets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Resources\amazeuiassets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Resources\amazeuiassets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Resources\amazeuiassets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Resources\amazeuiassets\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Common\SharePart.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
