@@ -17,11 +17,9 @@
       以获得更好的体验！</p>
     <![endif]-->
     <header data-am-widget="header" class="am-header am-header-default am-no-layout">
-
-        <h1 class="am-header-title">
+        <h4 class="am-header-title" style="font-size:1.5rem; overflow:visible">
             北京移动9.8折
-        </h1>
-
+        </h4>
     </header>
     <div class="am-input-group am-input-group-primary" style="margin-top:1.5rem">
         <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
@@ -33,32 +31,32 @@
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2  am-avg-md-3 am-avg-lg-4 am-gallery-default am-no-layout" data-am-gallery="{ pureview: true }">
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="29.4">30元<span style="font-size:1.3rem"><br>售价29.4元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="30">30元<span id="pay30" style="font-size: 1.3rem; display: none"><br>售价29.4元</span></button>
             </div>
         </li>
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="49">50元<span style="font-size: 1.3rem; "><br>售价49元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="50">50元<span id="pay50" style="font-size: 1.3rem; display: none"><br>售价49元</span></button>
             </div>
         </li>
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="98">100元<span style="font-size: 1.3rem; "><br>售价98元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="100">100元<span id="pay100" style="font-size: 1.3rem; display:none"><br>售价98元</span></button>
             </div>
         </li>
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="196">200元<span style="font-size: 1.3rem; "><br>售价196元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="200">200元<span id="pay200" style="font-size: 1.3rem; display: none"><br>售价196元</span></button>
             </div>
         </li>
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="490">500元<span style="font-size: 1.3rem; "><br>售价490元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="500">500元<span id="pay500" style="font-size: 1.3rem; display: none"><br>售价490元</span></button>
             </div>
         </li>
         <li>
             <div class="am-gallery-item" style="text-align:center">
-                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="980">1000元<span style="font-size: 1.3rem; "><br>售价980元</span></button>
+                <button class="am-btn am-btn-default am-btn-xl am-btn-block am-disabled" money="1000">1000元<span id="pay1000" style="font-size: 1.3rem; display: none"><br>售价980元</span></button>
             </div>
         </li>
     </ul>
@@ -90,6 +88,8 @@
     </div>
     <script type="text/javascript">
         var projectInput = $("#vldNumber");
+        var paymoney = [30, 50, 100, 200, 500, 1000];
+        var timeRang = ["9:00", "19:00"];
 
         $(document).ready(function () {
             projectInput.bind('input propertychange', function () {
@@ -98,6 +98,7 @@
                 });
 
                 if ($(this).val().length == 11) {
+
                     if (IsPhoneNumber($(this).val())) {
                         var data = "";
                         var Phone = "";
@@ -121,6 +122,22 @@
                                     projectInput.blur();
                                     $("#btnOK").show();
                                     $("#warnText").text(result.ResultType);
+                                    //判断是否在活动时间内：是-显示折扣价格
+                                    var now = new Date();
+                                    var check = time_range(timeRang[0], timeRang[1], now.getHours() + ":" + now.getMinutes());
+                                    if (check) {
+                                        for (var i = 0; i < paymoney.length; i++) {
+                                            $("#pay" + paymoney[i]).css("display", "");
+                                        }
+                                    }
+                                        //活动时间外显示提示：恢复正常价格
+                                    else {
+                                        $("#warnText").text("活动时间结束：每天9:00-19:00");
+
+                                        for (var i = 0; i < paymoney.length; i++) {
+                                            $("#pay" + paymoney[i]).css("display", "none");
+                                        }
+                                    }
                                 }
                                 else {
                                     $("#warnText").text(result.ResultType);
@@ -128,11 +145,17 @@
                             }
                         });
                     }
+                    else {
+                        $("#warnText").text("号码无效");
+                    }
                 }
                 else {
                     $(".am-btn-default").each(function (idx, obj) {
                         $(obj).addClass('am-disabled')
                     });
+                    for (var i = 0; i < paymoney.length; i++) {
+                        $("#pay" + paymoney[i]).css("display", "none");
+                    }
                     $("#warnText").text("");
                     $("#btnOK").hide();
                 }
@@ -152,9 +175,49 @@
             });
         })
 
+        function time_range(beginTime, endTime, nowTime) {
+            var strb = beginTime.split(":");
+            if (strb.length != 2) {
+                return false;
+            }
+
+            var stre = endTime.split(":");
+            if (stre.length != 2) {
+                return false;
+            }
+
+            var strn = nowTime.split(":");
+            if (stre.length != 2) {
+                return false;
+            }
+            var b = new Date();
+            var e = new Date();
+            var n = new Date();
+
+            b.setHours(strb[0]);
+            b.setMinutes(strb[1]);
+            e.setHours(stre[0]);
+            e.setMinutes(stre[1]);
+            n.setHours(strn[0]);
+            n.setMinutes(strn[1]);
+
+            if (n.getTime() - b.getTime() > 0 && n.getTime() - e.getTime() < 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         function Pay() {
             if ($(".am-active").length == 1) {
-                alert("可以进入支付页面！");
+
+                var money = $(".am-active").attr("money");
+                var now = new Date();
+                var check = time_range(timeRang[0], timeRang[1], now.getHours() + ":" + now.getMinutes());
+                if (check) {
+                    money = money * 0.98;
+                }
+                alert("需支付：" + money);
             }
             else {
                 alert("请选择一个充值面额！");
