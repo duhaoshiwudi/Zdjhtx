@@ -44,11 +44,11 @@ namespace com.Zdjhtx.Controllers.WAP
                     if (info.city.Trim() == "北京" && info.supplier.Trim() == "移动")
                     {
                         msg = "OK";
-                        resultType = "符合活动号码：" + info.city + info.supplier;
+                        resultType = info.city + info.supplier;
                     }
                     else
                     {
-                        resultType = "不符合活动号码：" + info.city + info.supplier;
+                        resultType = "仅限北京移动：" + info.city + info.supplier;
                     }
                 }
                 else
